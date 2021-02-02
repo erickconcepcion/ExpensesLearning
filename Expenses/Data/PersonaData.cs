@@ -48,12 +48,20 @@ namespace Expenses.Data
         public void ActualizarPersona(int elegido, string name)
         {
             var personaActual = GetPersona(elegido);
+            ActualizarPersona(personaActual, name);
+        }
+        public void ActualizarPersona(Persona personaActual, string name)
+        {
             personaActual.Nombre = name;
             _saver.SavePersonas(personaActual.NumeroPersona, personaActual);
         }
         public void EliminarPersona(int elegido)
         {
             var personaActual = GetPersona(elegido);
+            EliminarPersona(personaActual);
+        }
+        public void EliminarPersona(Persona personaActual)
+        {
             Personas.Remove(personaActual);
             _saver.DeletePersonas(personaActual.NumeroPersona);
         }
