@@ -16,6 +16,11 @@ namespace Expenses.Utils
             var valid = decimal.TryParse(numero, out num);
             return valid ? num : DecimalPerfectParse(Console.ReadLine());
         }
-
+        public static decimal DecimalPerfectParse(string numero, decimal defaultNumber)
+        {
+            decimal num;
+            var valid = decimal.TryParse(numero, out num);
+            return valid ? num : defaultNumber;
+        }
     }
 }

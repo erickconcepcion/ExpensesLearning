@@ -17,6 +17,7 @@ namespace ExpensesGrafic
         {
             InitializeComponent();
             _personaData = new PersonaData();
+
         }
         public List<Persona> Personas { get; set; }
         private PersonaData _personaData;
@@ -34,6 +35,16 @@ namespace ExpensesGrafic
             var primerPersona = Personas.FirstOrDefault();
         }
 
+        private void ButonGastoClick(object sender, EventArgs e)
+        {
+            if (_selectedPersona != null)
+            {
+                new FormGasto(_selectedPersona).ShowDialog();
+                ResetForm();
+            }
+            
+        }
+
         private void EjecutaCadaQueCambieTexto(object textbox, EventArgs paramEvento)
         {
             dataGridViewNueva.DataSource = Personas.Where(p=> p.Nombre.ToLower().Contains(textBox1.Text)).ToList();
@@ -45,6 +56,7 @@ namespace ExpensesGrafic
             {
                 _selectedPersona = null;
                 textBox2.Clear();
+                dataGridViewNueva.ClearSelection();
             }
             else
             {
